@@ -1,5 +1,6 @@
 import requests #collect_html
-import html2text # trim_html
+import html2text #trim_html
+import re # 
 
 def collect_html(url):
 
@@ -14,14 +15,19 @@ def collect_html(url):
 def clean_html_text(html_string):
     html2textObject = html2text.HTML2Text() #Create html2text object
     html2textObject.ignore_links = True     #Change setting to not convert links from HTML
-    
+
     try:
         handled_html_text = html2textObject.handle(html_string)
-        clean_html_text = html_text.replace("\n", " ")
+        clean_html_text = handled_html_text.replace("\n", " ")
         return clean_html_text              #Return cleaned html text from html string
 
     except Exception as clean_html_text_err:
         print(clean_html_text_err)          #Print error message
 
-webpage_html_content = collect_html('https://www.york.ac.uk/teaching/cws/wws/webpage1.html')
-clean_html_text(webpage_html_content)
+def tokenize_string(input_string):
+    token_list = [i for i in re.split(r'([\d.]+|\W+)', input_string) if i]
+    return(token_list)
+
+webpage_html_content = collect_html('http://www.brainjar.com/java/host/test.html')
+cleaned_html_content_string = clean_html_text(webpage_html_content)
+print(tokenize_string(cleaned_html_content_string))
