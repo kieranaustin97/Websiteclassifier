@@ -1,6 +1,7 @@
 import requests #collect_html
 import html2text #trim_html
-import re # 
+import re #tokenize_string
+
 
 def collect_html(url):
 
@@ -30,4 +31,6 @@ def tokenize_string(input_string):
 
 webpage_html_content = collect_html('http://www.brainjar.com/java/host/test.html')
 cleaned_html_content_string = clean_html_text(webpage_html_content)
-print(tokenize_string(cleaned_html_content_string))
+word_list = tokenize_string(cleaned_html_content_string)
+counted_dictionary = (dict((x,word_list.count(x)) for x in set(word_list)))
+print(counted_dictionary)
