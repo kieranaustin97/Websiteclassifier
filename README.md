@@ -1,2 +1,4 @@
 # Website Classifier
-Python based application to classify website types
+Python based application to classify website types.
+
+
