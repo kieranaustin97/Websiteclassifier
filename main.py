@@ -1,4 +1,4 @@
-#Webpage collection imports
+#Webpage collection imports (Where each import is used)
 
 import requests #collect_html
 import html2text #trim_html
@@ -6,14 +6,13 @@ import re #tokenize_string
 import csv
 
 #Machine learning imports
-import numpy as np
+import numpy
 import pandas
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score
+
 import matplotlib.pyplot as plt
-import seaborn as sns
-from collections import OrderedDict
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 
@@ -84,7 +83,7 @@ print(htmlDF.head)
 #model = MultinomialNB().fit(X_train, y_train)
 #predicted = model.predict(X_test)
 
-#print(np.mean(predicted == y_test))
+#print(numpy.mean(predicted == y_test))
 #counted_dictionary = (dict((x,word_list.count(x)) for x in set(word_list)))
 
 
@@ -112,4 +111,4 @@ print(htmlDF.head)
 #model = MultinomialNB().fit(X_train, y_train)
 #predicted = model.predict(X_test)
 
-#print(np.mean(predicted == y_test))
+#print(numpy.mean(predicted == y_test))
