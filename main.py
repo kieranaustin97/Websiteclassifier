@@ -3,6 +3,7 @@
 import requests #collect_html
 import html2text #trim_html
 import re #tokenize_string
+import csv
 
 #Machine learning imports
 import numpy as np
@@ -31,6 +32,7 @@ def collect_html(url):
 def clean_html_text(html_string):
     html2textObject = html2text.HTML2Text() #Create html2text object
     html2textObject.ignore_links = True     #Change setting to not convert links from HTML
+    html2textObject.ignore_images = True
     try:
         handled_html_text = html2textObject.handle(html_string)
         clean_html_text = handled_html_text.replace("\n", " ")
@@ -46,24 +48,57 @@ def tokenize_string(input_string):
 def class_collect_website(class_name,url):
     message = tokenize_string(clean_html_text(collect_html(url)))
     message_string = ' '.join(message)
-    data = {'class':class_name,'message':message_string}
-    Testdf = pandas.DataFrame(data=data,index=[0])
-    print(Testdf.head)
+    html_message_data = {'classification':class_name,'message':message_string}
+    return(html_message_data)
 
-#Creataion of dataframe.    
-class_collect_website('test','http://www.brainjar.com/java/host/test.html')
+def create_dataframe(data):
+    newDF = pandas.DataFrame(data=data)
+    return(newDF)
+
+#Create empty list
+data_for_dataframe = []
+
+#Open CSV file containing classified websites
+with open('training_websites.csv') as website_csv_file:
+    website_csv_reader = csv.DictReader(website_csv_file)
+    #Collect and clean HTML and append to data list
+    for row in website_csv_reader:
+        data_for_dataframe.append(class_collect_website(row['classification'],row['url']))
+
+#Create dataframe
+htmlDF = create_dataframe(data_for_dataframe)
+
+htmlDF['classification'] = htmlDF.classification.map({'news':0})
+htmlDF['message'] = htmlDF.message.str.replace('[^\w\s]', '') 
+print(htmlDF.head)
+
+
+#count_vect = CountVectorizer()
+#counts = count_vect.fit_transform(htmlDF['message'])
+
+#transformer = TfidfTransformer().fit(counts)
+
+#counts = transformer.transform(counts)
+
+#X_train, X_test, y_train, y_test = train_test_split(counts, htmlDF['classification'], test_size=0.1, random_state=69)
+#model = MultinomialNB().fit(X_train, y_train)
+#predicted = model.predict(X_test)
+
+#print(np.mean(predicted == y_test))
 #counted_dictionary = (dict((x,word_list.count(x)) for x in set(word_list)))
 
-#Replace from here
-df = pandas.read_csv('site_keywords.csv',sep='\t',header=None,names=['label','message'])  #Read in CSV
-df['label'] = df.label.map({'ham': 0, 'spam': 1})                                         #Convert class names to numbers
-df['message'] = df.message.map(lambda x: x.lower())                                       #Lower string
-print(df.head)
-df['message'] = df.message.str.replace('[^\w\s]', '')                                     #Replace anything other than a word and spaces
-df['message'] = df['message'].apply(nltk.word_tokenize)                                   #tokenize the messages into into single words
-print(df.head)
-df['message'] = df['message'].apply(lambda x: ' '.join(x))                                # This converts the list of words into space-separated strings
-print(df.head)
+
+
+#Working example
+#df = pandas.read_csv('site_keywords.csv',sep='\t',header=None,names=['label','message'])  #Read in CSV
+#df['label'] = df.label.map({'ham': 0, 'spam': 1})                                         #Convert class names to numbers
+#df['message'] = df.message.map(lambda x: x.lower())                                       #Lower string
+#print(df.head)
+#df['message'] = df.message.str.replace('[^\w\s]', '')                                     #Replace anything other than a word and spaces
+#df['message'] = df['message'].apply(nltk.word_tokenize)                                   #tokenize the messages into into single words
+#print(df.head)
+#df['message'] = df['message'].apply(lambda x: ' '.join(x))                                # This converts the list of words into space-separated strings
+#print(df.head)
 #To here with code to collect from HTML Pages
 
 #count_vect = CountVectorizer()
