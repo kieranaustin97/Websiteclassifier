@@ -71,7 +71,6 @@ htmlDF['classification'] = htmlDF.classification.map({'news':0 , 'golf':1})
 htmlDF['message'] = htmlDF.message.str.replace('[^\w\s]', '') 
 print(htmlDF.head)
 
-
 count_vect = CountVectorizer()
 counts = count_vect.fit_transform(htmlDF['message'])
 
