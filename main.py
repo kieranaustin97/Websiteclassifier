@@ -22,7 +22,7 @@ from sklearn.naive_bayes import MultinomialNB
 
 def collect_html(url):
     try:
-        webpage = requests.get(url)         #Request webpage
+        webpage = requests.get(url, timeout=10)         #Request webpage
         html_text = webpage.text         #HTML text from webpage
         return html_text
     except Exception as collect_html_err:
@@ -79,7 +79,7 @@ transformer = TfidfTransformer().fit(counts)
 
 counts = transformer.transform(counts)
 
-X_train, X_test, y_train, y_test = train_test_split(counts, htmlDF['classification'], test_size=0.2, random_state=69)
+X_train, X_test, y_train, y_test = train_test_split(counts, htmlDF['classification'], test_size=0.4, random_state=69)
 model = MultinomialNB().fit(X_train, y_train)
 predicted = model.predict(X_test)
 
