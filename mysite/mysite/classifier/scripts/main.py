@@ -58,7 +58,7 @@ def create_dataframe(data):
 data_for_dataframe = []
 
 #Open CSV file containing classified websites
-with open('training_websites.csv') as website_csv_file:
+with open('mysite/mysite/classifier/scripts/training_websites.csv') as website_csv_file:
     website_csv_reader = csv.DictReader(website_csv_file)
     #Collect and clean HTML and append to data list
     for row in website_csv_reader:
