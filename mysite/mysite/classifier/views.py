@@ -14,16 +14,17 @@ def index(request):
         if form.is_valid():
 
             input_url = form.cleaned_data['url']
-            print(input_url)
             classification = predict_site_class(input_url)
-            print("CLASSSSSSSSSSSSSSS" + classification)
-            #test_output = subprocess.run('python mysite/mysite/classifier/scripts/test_script.py', stdout=PIPE, encoding='utf-8')
 
-            #print(test_output.stdout)
-            
-            return HttpResponseRedirect('/thanks/')
+            context = {
+                "url": input_url,
+                "url_classification": classification,
+            }
+
+            return render(request, 'classifier/output.html', context)
     
     else:
         form = URLForm()
 
     return render(request, 'classifier/home.html', {'form': form})
+
