@@ -3,6 +3,11 @@ from django.http import HttpResponseRedirect
 
 from .forms import URLForm
 
+import subprocess
+from subprocess import PIPE
+
+from classifier.scripts.main import predict_site_class
+
 
 # Create your views here.
 def index(request):
@@ -10,6 +15,15 @@ def index(request):
         form = URLForm(request.POST)
 
         if form.is_valid():
+
+            input_url = form.cleaned_data['url']
+            print(input_url)
+            classification = predict_site_class(input_url)
+            print("CLASSSSSSSSSSSSSSS" + classification)
+            #test_output = subprocess.run('python mysite/mysite/classifier/scripts/test_script.py', stdout=PIPE, encoding='utf-8')
+
+            #print(test_output.stdout)
+            
             return HttpResponseRedirect('/thanks/')
     
     else:

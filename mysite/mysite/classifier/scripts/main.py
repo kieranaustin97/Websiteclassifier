@@ -66,7 +66,7 @@ def predict_site_class(url):
     new_data_counts = count_vect.transform(new_data_message_string)
     new_data_counts = transformer.transform(new_data_counts) 
     #Print classification from prediction
-    print(model.predict(new_data_counts))
+    return(str(model.predict(new_data_counts)[0]))
 
 #Create empty list
 data_for_dataframe = []
@@ -96,6 +96,4 @@ X_train, X_test, y_train, y_test = train_test_split(counts, htmlDF['classificati
 model = MultinomialNB().fit(X_train, y_train)
 predicted = model.predict(X_test)
 
-print(numpy.mean(predicted == y_test))
-
-predict_site_class('https://www.maryberry.co.uk/')
+#print(numpy.mean(predicted == y_test))
