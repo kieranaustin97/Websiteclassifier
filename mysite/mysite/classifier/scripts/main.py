@@ -11,6 +11,7 @@ import pandas
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score
+from collections import OrderedDict
 
 import matplotlib.pyplot as plt
 from sklearn.feature_extraction.text import CountVectorizer
@@ -54,6 +55,19 @@ def create_dataframe(data):
     newDF = pandas.DataFrame(data=data)
     return(newDF)
 
+def predict_site_class(url):
+    #Collect HTML from input url
+    new_data_message = tokenize_string(clean_html_text(collect_html(url)))
+    new_data_message_string = ' '.join(new_data_message).replace('[^\w\s]', '') 
+
+    #String object
+    new_data_message_string=[new_data_message_string]
+    #Counts and transformation for model fitting
+    new_data_counts = count_vect.transform(new_data_message_string)
+    new_data_counts = transformer.transform(new_data_counts) 
+    #Print classification from prediction
+    print(model.predict(new_data_counts))
+
 #Create empty list
 data_for_dataframe = []
 
@@ -83,3 +97,5 @@ model = MultinomialNB().fit(X_train, y_train)
 predicted = model.predict(X_test)
 
 print(numpy.mean(predicted == y_test))
+
+predict_site_class('https://www.maryberry.co.uk/')
