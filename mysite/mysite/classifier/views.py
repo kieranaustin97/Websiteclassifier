@@ -3,9 +3,6 @@ from django.http import HttpResponseRedirect
 
 from .forms import URLForm
 
-import subprocess
-from subprocess import PIPE
-
 from classifier.scripts.main import predict_site_class
 
 
