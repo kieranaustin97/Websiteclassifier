@@ -66,8 +66,16 @@ def predict_site_class(url):
     new_data_counts = count_vect.transform(new_data_message_string)
     new_data_counts = transformer.transform(new_data_counts) 
     #Print classification from prediction
-    return(str(model.predict(new_data_counts)[0]))
+    val = (model.predict(new_data_counts)[0])
+    
+    for key, value in classification_dictionary.items(): 
+         if val == value: 
+             classification_string = key 
 
+    return classification_string
+    # return(str(model.predict(new_data_counts)[0]))
+
+    
 #Create empty list
 data_for_dataframe = []
 
@@ -81,7 +89,13 @@ with open('mysite/mysite/classifier/scripts/training_websites.csv') as website_c
 #Create dataframe
 htmlDF = create_dataframe(data_for_dataframe)
 
-htmlDF['classification'] = htmlDF.classification.map({'news':0 , 'golf':1})
+unique_values = htmlDF.classification.unique()
+classification_dictionary = {
+    unique_values[0]: 0,
+    unique_values[1]: 1,
+}
+ 
+htmlDF['classification'] = htmlDF.classification.map(classification_dictionary)
 htmlDF['message'] = htmlDF.message.str.replace('[^\w\s]', '') 
 #print(htmlDF.head)
 
