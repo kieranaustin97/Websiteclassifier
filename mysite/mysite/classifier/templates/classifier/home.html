@@ -3,17 +3,10 @@
 {% block content %}
 <h4 class="center-align">Enter Website For Classification</h4>
 
-<div class="row">
-    <form action="/your-url/" method="post" class="col s12">
-      <div class="row">
-        <div class="input-field col s6">
-            <input placeholder="Website URL" id="url" type="text" class="validate">
-          <label for="url">Please Enter URL</label>
-        </div>
-        <div class="input-field col s6">
-            <input type="submit" value="Submit">
-        </div>
-      </div>
-    </form>
-  </div>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
+
 {% endblock %}
