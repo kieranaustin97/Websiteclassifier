@@ -3,7 +3,8 @@ from django.http import HttpResponseRedirect
 
 from .forms import URLForm
 
-from classifier.scripts.main import predict_site_class
+#Import Machine Learning classification function from website_classification.py file
+from classifier.scripts.website_classification import predict_site_class
 
 
 # Create your views here.
