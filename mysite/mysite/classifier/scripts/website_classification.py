@@ -55,7 +55,7 @@ def create_dataframe(data):
     newDF = pandas.DataFrame(data=data)
     return(newDF)
 
-def predict_site_class(url):
+def predict_site_class(url): #Code run on form submit (User input)
     #Collect HTML from input url
     new_data_message = tokenize_string(clean_html_text(collect_html(url)))
     new_data_message_string = ' '.join(new_data_message).replace('[^\w\s]', '') 
@@ -73,8 +73,6 @@ def predict_site_class(url):
              classification_string = key 
 
     return classification_string
-    # return(str(model.predict(new_data_counts)[0]))
-
     
 #Create empty list
 data_for_dataframe = []
@@ -89,15 +87,17 @@ with open('classifier/scripts/training_websites.csv') as website_csv_file:
 #Create dataframe
 htmlDF = create_dataframe(data_for_dataframe)
 
+#Array of unique classes of websites from training data
 unique_values = htmlDF.classification.unique()
-classification_dictionary = {
-    unique_values[0]: 0,
-    unique_values[1]: 1,
-}
+
+#Build up dictionary which maps classes to numerical representation
+classification_dictionary = {}
+for i in range(len(unique_values)): #For each unique classification
+    classification_dictionary[unique_values[i]] = i #Add classification to dicionary along with increasing number mapping
  
+ #Replace classification name with number
 htmlDF['classification'] = htmlDF.classification.map(classification_dictionary)
 htmlDF['message'] = htmlDF.message.str.replace('[^\w\s]', '') 
-#print(htmlDF.head)
 
 count_vect = CountVectorizer()
 counts = count_vect.fit_transform(htmlDF['message'])
