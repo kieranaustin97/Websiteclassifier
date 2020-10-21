@@ -95,7 +95,7 @@ classification_dictionary = {}
 for i in range(len(unique_values)): #For each unique classification
     classification_dictionary[unique_values[i]] = i #Add classification to dicionary along with increasing number mapping
  
- #Replace classification name with number
+#Replace classification name with number
 htmlDF['classification'] = htmlDF.classification.map(classification_dictionary)
 htmlDF['message'] = htmlDF.message.str.replace('[^\w\s]', '') 
 
