@@ -1,12 +1,14 @@
 {% extends "classifier/header.html" %}
 
 {% block content %}
-<h4 class="center-align">Enter Website For Classification</h4>
+<div class="container">
+<h4 class="center-align">Enter URL for Classification</h4>
 
 <form action="" method="post">
     {% csrf_token %}
+    
     {{ form }}
     <input type="submit" value="Submit">
 </form>
-
+</div>
 {% endblock %}
