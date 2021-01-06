@@ -4,7 +4,9 @@ from django.http import HttpResponseRedirect
 from .forms import URLForm
 
 #Import Machine Learning classification function from website_classification.py file
-from classifier.scripts.website_classification import predict_site_class
+#from classifier.scripts.website_classification import predict_site_class
+import classifier.scripts.website_classification as web_classifier
+
 
 # Create your views here.
 def index(request):
@@ -14,7 +16,8 @@ def index(request):
         if form.is_valid():
 
             input_url = form.cleaned_data['url']
-            classification = predict_site_class(input_url)
+            websiteClassifierObject = web_classifier.WebsiteClassifier()
+            classification = websiteClassifierObject.predict_site_class(input_url)
 
             context = {
                 "url": input_url,
