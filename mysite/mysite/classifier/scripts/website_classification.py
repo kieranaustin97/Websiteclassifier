@@ -23,7 +23,7 @@ from sklearn.naive_bayes import MultinomialNB
 
 def collect_html(url):
     try:
-        webpage = requests.get(url, timeout=10)         #Request webpage
+        webpage = requests.get(url, timeout=10) #Request webpage
         html_text = webpage.text         #HTML text from webpage
         return html_text
     except Exception as collect_html_err:
@@ -31,23 +31,19 @@ def collect_html(url):
 
 def clean_html_text(html_string):
     html2textObject = html2text.HTML2Text() #Create html2text object
-    html2textObject.ignore_links = True     #Change setting to not convert links from HTML
+    html2textObject.ignore_links = False     #Change setting to not convert links from HTML
     html2textObject.ignore_images = True
     try:
         handled_html_text = html2textObject.handle(html_string)
         clean_html_text = handled_html_text.replace("\n", " ")
-        lower_clean_html_text = clean_html_text.lower() #Lower String
+        lower_clean_html_text = clean_html_text.lower().strip() #Lower String and strip leading/trailing whitespaces
         return lower_clean_html_text              #Return cleaned html text from html string
     except Exception as clean_html_text_err:
         print(clean_html_text_err)          #Print error message
 
-def tokenize_string(input_string):
-    token_list = input_string.split()
-    return(token_list)
-
 def class_collect_website(class_name,url):
-    message = tokenize_string(clean_html_text(collect_html(url)))
-    message_string = ' '.join(message)
+    message_string = clean_html_text(collect_html(url))
+
     html_message_data = {'classification':class_name,'message':message_string}
     return(html_message_data)
 
@@ -57,8 +53,7 @@ def create_dataframe(data):
 
 def predict_site_class(url): #Code run on form submit (User input)
     #Collect HTML from input url
-    new_data_message = tokenize_string(clean_html_text(collect_html(url)))
-    new_data_message_string = ' '.join(new_data_message).replace('[^\w\s]', '') 
+    new_data_message_string = clean_html_text(collect_html(url))
 
     #String object
     new_data_message_string=[new_data_message_string]
