@@ -6,7 +6,6 @@ from .forms import URLForm
 #Import Machine Learning classification function from website_classification.py file
 from classifier.scripts.website_classification import predict_site_class
 
-
 # Create your views here.
 def index(request):
     if request.method == 'POST':
