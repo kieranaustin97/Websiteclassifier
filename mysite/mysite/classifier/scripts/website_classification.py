@@ -39,7 +39,7 @@ def clean_html_text(html_string):
         lower_clean_html_text = clean_html_text.lower().strip() #Lower String and strip leading/trailing whitespaces
         return lower_clean_html_text              #Return cleaned html text from html string
     except Exception as clean_html_text_err:
-        print(clean_html_text_err)          #Print error message
+        print("clean_html_text FAILED " + clean_html_text_err)          #Print error message
 
 def class_collect_website(class_name,url):
     message_string = clean_html_text(collect_html(url))
@@ -69,6 +69,10 @@ def predict_site_class(url): #Code run on form submit (User input)
 
     return classification_string
     
+
+#Entry point for Python Application
+print("PYTHON SCRIPT RUNNING")
+
 #Create empty list
 data_for_dataframe = []
 
