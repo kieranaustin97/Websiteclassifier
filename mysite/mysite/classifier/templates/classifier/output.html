@@ -1,6 +1,9 @@
 {% extends "classifier/header.html" %}
 
 {% block content %}
-<h1>Input URL: {{url}}</h1>
+<div class="container">
+<h1>Classified URL: {{url}}</h1>
 <h1>URL Classification: {{url_classification}}</h1>
+<a href="" class="waves-effect waves-light btn-large">Classify Another URL</a>
 {% endblock %}
+</div>
