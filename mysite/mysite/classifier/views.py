@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
 from .forms import URLForm
+from classifier.models import PredictedWebsites
 
 #Import Machine Learning classification function from website_classification.py file
 from classifier.scripts.website_classification import predict_site_class
@@ -21,6 +22,12 @@ def index(request):
                 "url_classification": classification,
             }
 
+            #Create and save output to Database
+            PredictedWebsites.objects.create(
+                url=input_url,
+                classification=classification
+            )
+
             return render(request, 'classifier/output.html', context)
     
     else:
@@ -28,3 +35,11 @@ def index(request):
 
     return render(request, 'classifier/home.html', {'form': form})
 
+def showresults(request):
+
+    previous_classification_list = PredictedWebsites.objects.all()
+    context = {
+        "results": previous_classification_list
+    }
+
+    return render(request, 'classifier/results.html', context)
