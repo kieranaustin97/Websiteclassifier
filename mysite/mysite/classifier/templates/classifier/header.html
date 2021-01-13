@@ -41,9 +41,11 @@
         <div class="navbar-fixed">
         <nav>
             <div class="nav-wrapper teal darken-3">
-              <a href="" class="brand-logo center">Website Classifier</a>
+              <a href="{% url 'index' %}" class="brand-logo center">Website Classifier</a>
               <ul id="nav-mobile" class="left">
-                <a href="">Home</a>
+                <li><a class="waves-effect waves-light btn-large" href="{% url 'index' %}">Home</a></li>
+                <li><a class="waves-effect waves-light btn-large" href="{% url 'showresults' %}">Previous Classifications</a></li>
+              </ul>
             </div>
           </nav>
         </div>
