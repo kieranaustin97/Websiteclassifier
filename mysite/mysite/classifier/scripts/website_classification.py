@@ -17,9 +17,9 @@ import matplotlib.pyplot as plt
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 
-import nltk
-from nltk.stem import PorterStemmer
-from sklearn.naive_bayes import MultinomialNB
+#import nltk
+#from nltk.stem import PorterStemmer
+#from sklearn.naive_bayes import MultinomialNB
 
 def collect_html(url):
     try:
