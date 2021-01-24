@@ -1,0 +1,25 @@
+{% extends "classifier/header.html" %}
+
+{% block content %}
+<div class="container">
+<h4 class="center-align">Previous Classifications</h4>
+<table class="centered highlight">
+    <thead>
+      <tr>
+          <th>URL</th>
+          <th>Classification</th>
+      </tr>
+    </thead>
+    {% for url in  results %}
+    <tbody>
+        <tr>
+          <td>{{ url.url }}</td>
+          <td>{{ url.classification }}</td>
+        </tr>
+
+    {% endfor %}
+    </tbody>
+</table>
+
+</div>
+{% endblock %}

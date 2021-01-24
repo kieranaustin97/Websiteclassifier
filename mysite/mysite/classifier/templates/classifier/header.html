@@ -3,7 +3,7 @@
 <head>
     <title>Website Classifier</title>
     <meta charset="UTF-8"/>
-    {% load staticfiles %} 
+    {% load static %} 
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
@@ -41,9 +41,11 @@
         <div class="navbar-fixed">
         <nav>
             <div class="nav-wrapper teal darken-3">
-              <a href="#" class="brand-logo center">Website Classifier</a>
-              <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <a href="">Home</a>
+              <a href="{% url 'index' %}" class="brand-logo center">Website Classifier</a>
+              <ul id="nav-mobile" class="left">
+                <li><a class="waves-effect waves-light btn-large" href="{% url 'index' %}">Home</a></li>
+                <li><a class="waves-effect waves-light btn-large" href="{% url 'showresults' %}">Previous Classifications</a></li>
+              </ul>
             </div>
           </nav>
         </div>
@@ -71,9 +73,7 @@
           <h5 class="white-text">Links</h5> 
           <ul> 
             <li> 
-              <a class="grey-text text-lighten-3" href="https://github.com/kieranaustin97/Websiteclassifier"> 
-                Source code
-              </a> 
+              <a class="grey-text text-lighten-3" href="https://github.com/kieranaustin97/Websiteclassifier">Source code</a> 
             </li> 
           </ul> 
         </div> 
@@ -82,9 +82,7 @@
     <div class="footer-copyright teal darken-4"> 
       <div class="container "> 
         Developed 2020: Website Classifier Tool 
-        <a class="grey-text text-lighten-4 right" href="#!"> 
-          Kieran Austin
-        </a> 
+        <a class="grey-text text-lighten-4 right" href="https://github.com/kieranaustin97">Developed by: Kieran Austin</a> 
       </div> 
     </div> 
   </footer> 
