@@ -19,7 +19,8 @@ from sklearn.feature_extraction.text import TfidfTransformer
 
 #import nltk
 #from nltk.stem import PorterStemmer
-#from sklearn.naive_bayes import MultinomialNB
+
+from sklearn.naive_bayes import MultinomialNB
 
 def collect_html(url):
     try:

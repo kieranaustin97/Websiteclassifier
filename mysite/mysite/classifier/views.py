@@ -17,8 +17,7 @@ def index(request):
         if form.is_valid():
 
             input_url = form.cleaned_data['url']
-            websiteClassifierObject = web_classifier.WebsiteClassifier()
-            classification = websiteClassifierObject.predict_site_class(input_url)
+            classification = web_classifier.predict_site_class(input_url)
 
             context = {
                 "url": input_url,
