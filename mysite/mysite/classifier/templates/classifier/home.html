@@ -1,4 +1,5 @@
 {% extends "classifier/header.html" %}
+{% load materializecss %}
 
 {% block content %}
 <div class="container">
@@ -7,7 +8,7 @@
 <form action="" method="post">
     {% csrf_token %}
     
-    {{ form }}
+    {{ form|materializecss:'icon=search' }}
     <input type="submit" value="Submit">
 </form>
 </div>
