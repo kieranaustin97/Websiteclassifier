@@ -39,19 +39,28 @@
     border-radius: 4px;
   } 
 
+  .btn-large{
+    background-color: #311b92 !important;
+    border: 2px solid #000;
+  }  
+  .btn-large:hover{
+    background-color: #673ab7  !important;
+    border: 2px solid #000;
+  }  
+
     </style> 
 
 </head>
 
-<body class="body" style="background-color:#009688 ">
+<body class="body" style="background-color:#f0f0f0 ">
     <header>
         <div class="navbar-fixed">
         <nav>
-            <div class="nav-wrapper teal darken-3">
+            <div class="nav-wrapper deep-purple darken-3">
               <a href="{% url 'index' %}" class="brand-logo center">Website Classifier</a>
               <ul id="nav-mobile" class="left">
-                <li><a class="waves-effect waves-light btn-large" href="{% url 'index' %}">Home</a></li>
-                <li><a class="waves-effect waves-light btn-large" href="{% url 'showresults' %}">Previous Classifications</a></li>
+                <li><a class="waves-effect waves-purple btn-large" href="{% url 'index' %}">Home</a></li>
+                <li><a class="waves-effect waves-purple btn-large" href="{% url 'showresults' %}">Previous Classifications</a></li>
               </ul>
             </div>
           </nav>
@@ -65,7 +74,7 @@
     </main>
 
   <!-- Define the footer -->
-  <footer class="page-footer teal darken-3"> 
+  <footer class="page-footer deep-purple darken-3"> 
     <div class="container "> 
       <div class="row"> 
         <div class="col l6 s12"> 
@@ -86,7 +95,7 @@
         </div> 
       </div> 
     </div> 
-    <div class="footer-copyright teal darken-4"> 
+    <div class="footer-copyright deep-purple darken-4"> 
       <div class="container "> 
         Developed 2020: Website Classifier Tool 
         <a class="grey-text text-lighten-4 right" href="https://github.com/kieranaustin97">Developed by: Kieran Austin</a> 
