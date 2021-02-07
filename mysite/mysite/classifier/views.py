@@ -4,8 +4,8 @@ from django.http import HttpResponseRedirect
 from .forms import URLForm
 from classifier.models import PredictedWebsites
 
-#Import Machine Learning classification function from website_classification.py file
-#from classifier.scripts.website_classification import predict_site_class
+import datetime
+
 import classifier.scripts.website_classification as web_classifier
 
 
@@ -18,16 +18,19 @@ def index(request):
 
             input_url = form.cleaned_data['url']
             classification = web_classifier.predict_site_class(input_url)
-
+            currentDatestamp = datetime.datetime.now()
+            
             context = {
                 "url": input_url,
                 "url_classification": classification,
+                "datestamp": currentDatestamp
             }
 
             #Create and save output to Database
             PredictedWebsites.objects.create(
                 url=input_url,
-                classification=classification
+                classification=classification,
+                datestamp=currentDatestamp
             )
 
             return render(request, 'classifier/output.html', context)

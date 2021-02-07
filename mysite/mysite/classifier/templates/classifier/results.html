@@ -8,6 +8,7 @@
       <tr>
           <th>URL</th>
           <th>Classification</th>
+          <th>Datestamp</th>
       </tr>
     </thead>
     {% for url in  results %}
@@ -15,6 +16,7 @@
         <tr>
           <td>{{ url.url }}</td>
           <td>{{ url.classification }}</td>
+          <td>{{ url.datestamp }}</td>
         </tr>
 
     {% endfor %}
