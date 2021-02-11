@@ -3,11 +3,9 @@ from django.http import HttpResponseRedirect
 
 from .forms import URLForm
 from classifier.models import PredictedWebsites
-
-import datetime
-
 import classifier.scripts.website_classification as web_classifier
 
+import datetime
 
 # Create your views here.
 def index(request):
@@ -48,7 +46,7 @@ def showresults(request):
     #Collects all objects from database
     previous_classification_list = PredictedWebsites.objects.all()
 
-    #Check if any objects retrieved
+    #Check if any objects retrieved, if there is none return blank page instead of table
     if len(previous_classification_list) == 0:
         return render(request, 'classifier/noResults.html')
 

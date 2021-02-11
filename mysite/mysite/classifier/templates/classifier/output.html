@@ -2,8 +2,11 @@
 
 {% block content %}
 <div class="container">
-<h4>Classified URL: {{url}}</h4>
-<h4>URL Classification: {{url_classification}}</h4>
+<h4 class="center-align">Classification Results</h4>
+<h3>Classified URL: {{url}}</h3>
+<h3>URL Classification: {{url_classification}}</h3>
 <a href="" class="waves-effect waves-light btn-large">Classify Another URL</a>
+<br><br>
+<a class="waves-effect waves-purple btn-large" href="{% url 'showresults' %}">Previous Classifications</a>
 {% endblock %}
 </div>
