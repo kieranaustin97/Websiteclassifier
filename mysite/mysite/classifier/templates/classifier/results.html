@@ -6,17 +6,27 @@
 <table class="centered highlight">
     <thead>
       <tr>
+          <th>ID</th>
           <th>URL</th>
           <th>Classification</th>
           <th>Datestamp</th>
+          <th>Delete Record?</th>
       </tr>
     </thead>
     {% for url in  results %}
     <tbody>
         <tr>
+          <td>{{ url.id }}</td>
           <td>{{ url.url }}</td>
           <td>{{ url.classification }}</td>
           <td>{{ url.datestamp }}</td>
+          <td>
+            <form method="post">
+              {% csrf_token %}
+              <input type="hidden" value="{{url.id}}" name="id">
+              <input class="btn-delete" type="Submit" value="Delete"></button>
+            </form>
+          </td>
         </tr>
 
     {% endfor %}

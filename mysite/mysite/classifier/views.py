@@ -41,10 +41,19 @@ def index(request):
     return render(request, 'classifier/home.html', {'form': form})
 
 def showresults(request):
-
+    #Deletes item from table if delete form submitted
+    if request.method == "POST":
+        PredictedWebsites.objects.get(id=request.POST['id']).delete()
+    
+    #Collects all objects from database
     previous_classification_list = PredictedWebsites.objects.all()
-    context = {
-        "results": previous_classification_list
-    }
 
-    return render(request, 'classifier/results.html', context)
+    #Check if any objects retrieved
+    if len(previous_classification_list) == 0:
+        return render(request, 'classifier/noResults.html')
+
+    else:
+        context = {
+            "results": previous_classification_list
+        }
+        return render(request, 'classifier/results.html', context)
