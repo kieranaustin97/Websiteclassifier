@@ -34,9 +34,14 @@ def index(request):
             return render(request, 'classifier/output.html', context)
     
     else:
+        
         form = URLForm()
+        context = {
+            'class_array':web_classifier.list_possible_classes(),
+            'form':form
+        }
 
-    return render(request, 'classifier/home.html', {'form': form})
+    return render(request, 'classifier/home.html', context)
 
 def showresults(request):
     #Deletes item from table if delete form submitted

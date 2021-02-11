@@ -69,6 +69,10 @@ def predict_site_class(url): #Code run on form submit (User input)
              classification_string = key 
 
     return classification_string
+
+def list_possible_classes():
+    return unique_values
+    
     
 #Script starts running here when server started due to function call in views.py file.
 

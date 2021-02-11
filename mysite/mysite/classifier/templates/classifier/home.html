@@ -11,5 +11,13 @@
     {{ form|materializecss:'icon=search' }}
     <input type="submit" value="Submit">
 </form>
+<h4 class="center-align">Possible Website Classifications</h4>
+<div class = "center-align">
+<ul>
+{% for class in class_array %}
+<li>{{ class }}</li>
+{% endfor %}
+</ul>
+</div>
 </div>
 {% endblock %}
