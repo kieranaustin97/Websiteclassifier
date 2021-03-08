@@ -108,8 +108,9 @@ transformer = TfidfTransformer().fit(counts)
 
 counts = transformer.transform(counts)
 
-X_train, X_test, y_train, y_test = train_test_split(counts, htmlDF['classification'], test_size=0.4, random_state=69)
-model = MultinomialNB().fit(X_train, y_train)
-predicted = model.predict(X_test)
+#X_train, X_test, y_train, y_test = train_test_split(counts, htmlDF['classification'], test_size=0.3, random_state=69)
+#model = MultinomialNB().fit(X_train, y_train)
+#predicted = model.predict(X_test)
 
-#print(numpy.mean(predicted == y_test))
+#Fit model using every classification and URL provided
+model = MultinomialNB().fit(counts, htmlDF['classification'])
