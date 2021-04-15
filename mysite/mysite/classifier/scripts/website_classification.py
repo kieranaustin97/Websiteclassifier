@@ -99,7 +99,7 @@ for i in range(len(unique_values)): #For each unique classification
  
 #Replace classification name with number
 htmlDF['classification'] = htmlDF.classification.map(classification_dictionary)
-htmlDF['message'] = htmlDF.message.str.replace('[^\w\s]', '') 
+htmlDF['message'] = htmlDF.message.str.replace(r'[^\w\s]', '') 
 
 count_vect = CountVectorizer()
 counts = count_vect.fit_transform(htmlDF['message'])
