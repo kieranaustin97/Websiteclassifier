@@ -70,8 +70,7 @@ def predict_site_class(url): #Code run on form submit (User input)
         #Counts and transformation for model fitting
         new_data_counts = count_vect.transform(new_data_message_string)
         new_data_counts = transformer.transform(new_data_counts) 
-        #Print classification from prediction
-        print(model.predict_proba(new_data_counts))
+
         val = model.predict(new_data_counts)[0]
     
         for key, value in classification_dictionary.items(): 
@@ -113,15 +112,12 @@ for i in range(len(unique_values)): #For each unique classification
 htmlDF['classification'] = htmlDF.classification.map(classification_dictionary)
 #htmlDF['message'] = htmlDF.message
 
-print(htmlDF)
 
 count_vect = CountVectorizer()
 counts = count_vect.fit_transform(htmlDF['message'])
-print(counts)
-transformer = TfidfTransformer().fit(counts)
 
+transformer = TfidfTransformer().fit(counts)
 counts = transformer.transform(counts)
-print(counts)
 
 #X_train, X_test, y_train, y_test = train_test_split(counts, htmlDF['classification'], test_size=0.3, random_state=69)
 #model = MultinomialNB().fit(X_train, y_train)
