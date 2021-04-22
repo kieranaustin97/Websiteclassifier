@@ -23,33 +23,31 @@ from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.naive_bayes import MultinomialNB
 
 def collect_html(url):
-    method_check = re.search('^http://|^https://',url)
-    if method_check:
-        url = url
-    else: url = "http://" + url
-
     try:
-        webpage = requests.get(url, timeout=10) #Request webpage
-        html_text = webpage.text         #HTML text from webpage
-    except Exception as collect_html_err:
-        print(collect_html_err)             #Print error message
+        webpage = requests.get(url, timeout=3) #Request webpage
+    except requests.exceptions.Timeout as timeout_err:
+        print(timeout_err) #Print error message
+        raise
+    except requests.exceptions.ConnectionError as http_err:
+        print(http_err) #Print error message
         raise
     else:
+        html_text = webpage.text #HTML text from webpage
         return html_text
 
 def clean_html_text(html_string):
     html2textObject = html2text.HTML2Text() #Create html2text object
-    html2textObject.ignore_links = False     #Change setting to not convert links from HTML
+    html2textObject.ignore_links = False #Change setting to not convert links from HTML
     html2textObject.ignore_images = True
     try:
         handled_html_text = html2textObject.handle(html_string)
-        clean_html_text = handled_html_text.replace("\n", " ")
-        lower_clean_html_text = clean_html_text.lower().strip() #Lower String and strip leading/trailing whitespaces
+        clean_html_text = re.sub(r'[^\w\s]', ' ',handled_html_text) #regex to take out special characters
+        stripped_html_text = re.sub(r'\s+',' ', clean_html_text).lower().strip() #regex to take out multiple white spaces, Lower String and strip leading/trailing whitespaces
     except Exception as clean_html_text_err:
-        print(clean_html_text_err)          #Print error message
+        print(clean_html_text_err) #Print error message
         raise
     else:
-        return lower_clean_html_text              #Return cleaned html text from html string
+        return stripped_html_text #Return cleaned html text from html string
 
 def class_collect_website(class_name,url):
     try:
@@ -73,13 +71,14 @@ def predict_site_class(url): #Code run on form submit (User input)
         new_data_counts = count_vect.transform(new_data_message_string)
         new_data_counts = transformer.transform(new_data_counts) 
         #Print classification from prediction
+        print(model.predict_proba(new_data_counts))
         val = model.predict(new_data_counts)[0]
     
         for key, value in classification_dictionary.items(): 
             if val == value: 
                 classification_string = key 
 
-        return classification_string
+        return url,classification_string
 
 def list_possible_classes():
     return unique_values
@@ -112,14 +111,17 @@ for i in range(len(unique_values)): #For each unique classification
  
 #Replace classification name with number
 htmlDF['classification'] = htmlDF.classification.map(classification_dictionary)
-htmlDF['message'] = htmlDF.message.str.replace(r'[^\w\s]', '', regex=True) 
+#htmlDF['message'] = htmlDF.message
+
+print(htmlDF)
 
 count_vect = CountVectorizer()
 counts = count_vect.fit_transform(htmlDF['message'])
-
+print(counts)
 transformer = TfidfTransformer().fit(counts)
 
 counts = transformer.transform(counts)
+print(counts)
 
 #X_train, X_test, y_train, y_test = train_test_split(counts, htmlDF['classification'], test_size=0.3, random_state=69)
 #model = MultinomialNB().fit(X_train, y_train)
