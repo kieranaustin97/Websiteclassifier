@@ -6,6 +6,8 @@ from classifier.models import PredictedWebsites
 import classifier.scripts.website_classification as web_classifier
 
 import datetime
+import requests
+import re
 
 # Create your views here.
 def index(request):
@@ -14,43 +16,49 @@ def index(request):
 
         if form.is_valid():
 
-            input_url = form.cleaned_data['url']
             currentDatestamp = datetime.datetime.now()
+            input_url = form.cleaned_data['url']
+            method_check = re.search('^http://|^https://',input_url)
+            if method_check:
+                url = input_url
+            else: 
+                url = "http://" + input_url
+            
             try:
-                classification = web_classifier.predict_site_class(input_url)
-            except Exception:
+                url, classification = web_classifier.predict_site_class(url)
+            except requests.exceptions.Timeout:
+                context = {
+                    "url": url,
+                    "url_classification": "HTML Currently Unavilable and therefore no Classification provided",
+                    "datestamp": currentDatestamp,
+                    "colour":"Red"
+                }
+                return render(request, 'classifier/output.html', context)
+            except requests.exceptions.ConnectionError:
                 context = {
                     "url": input_url,
                     "url_classification": "HTML Currently Unavilable and therefore no Classification provided",
-                    "datestamp": currentDatestamp
+                    "datestamp": currentDatestamp,
+                    "colour":"Red"
                 }
-
                 return render(request, 'classifier/output.html', context)
             else:
                 context = {
-                    "url": input_url,
+                    "url": url,
                     "url_classification": classification,
-                    "datestamp": currentDatestamp
+                    "datestamp": currentDatestamp,
+                    "colour":"black"
                 }
-
-            #Create and save output to Database
-            PredictedWebsites.objects.create(
-                url=input_url,
-                classification=classification,
-                datestamp=currentDatestamp
-            )
-
-            return render(request, 'classifier/output.html', context)
+                PredictedWebsites.objects.create(url=url,classification=classification,datestamp=currentDatestamp) #Create and save output to Database
+                return render(request, 'classifier/output.html', context)
     
     else:
-        
         form = URLForm()
         context = {
             'class_array':web_classifier.list_possible_classes(),
             'form':form
         }
-
-    return render(request, 'classifier/home.html', context)
+        return render(request, 'classifier/home.html', context)
 
 def showresults(request):
     #Deletes item from table if delete form submitted
@@ -63,7 +71,6 @@ def showresults(request):
     #Check if any objects retrieved, if there is none return blank page instead of table
     if len(previous_classification_list) == 0:
         return render(request, 'classifier/noResults.html')
-
     else:
         context = {
             "results": previous_classification_list
