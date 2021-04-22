@@ -6,36 +6,58 @@
 "News",https://www.dailymail.co.uk/
 "News",https://www.dailystar.co.uk/
 "News",https://www.express.co.uk/
-"Golf",https://www.americanGolf.co.uk/
-"Golf",https://www.Golfgeardirect.co.uk/
-"Golf",https://www.affordableGolf.co.uk/
-"Golf",https://www.clubhouseGolf.co.uk/
-"Golf",https://www.onlineGolf.co.uk/
-"Golf",https://www.Golfgeardirect.co.uk/
+"News",https://www.nytimes.com/
+"News",https://uk.news.yahoo.com/
+"News",https://edition.cnn.com/
+"News",https://www.cnbc.com/world/
+"News",https://www.cbsnews.com/
+"News",https://www.independent.co.uk/
+"News",https://www.mirror.co.uk/
+"News",https://news.sky.com/
+"News",https://www.express.co.uk/
 "Banking",https://www.barclays.co.uk/
 "Banking",https://www.santander.co.uk/
 "Banking",https://www.nationwide.co.uk/
 "Banking",https://www.lloydsbank.com/
 "Banking",https://www.hsbc.co.uk/
 "Banking",https://www.halifax.co.uk/
-"Recipe",https://www.epicurious.com/
-"Recipe",https://www.allrecipes.com/
-"Recipe",https://www.delish.com/
-"Recipe",https://www.yummly.co.uk/
-"Recipe",https://www.simplyrecipes.com/
-"Recipe",https://www.deliciousmagazine.co.uk/
-"Recipe",http://allrecipes.co.uk/
-"Streaming",https://www.youtube.com/
-"Streaming",https://www.netflix.com/
-"Streaming",https://www.imdb.com/
-"Streaming",https://www.disneyplus.com/en-gb
-"Streaming",https://www.hulu.com/
-"Streaming",https://www.primevideo.com/
-"Streaming",https://www.dailymotion.com/gb
-"Shopping",https://www.ebay.co.uk/
-"Shopping",https://www.argos.co.uk/
-"Shopping",https://www.etsy.com/
-"Shopping",https://www.amazon.co.uk/
+"Banking",https://www.bankofscotland.co.uk/
+"Banking",https://www.co-operativebank.co.uk/
+"Banking",https://www1.firstdirect.com/
+"Banking",https://www.starlingbank.com/
+"Cooking Recipes",https://www.epicurious.com/
+"Cooking Recipes",https://www.allrecipes.com/
+"Cooking Recipes",https://www.delish.com/
+"Cooking Recipes",https://www.yummly.co.uk/
+"Cooking Recipes",https://www.simplyrecipes.com/
+"Cooking Recipes",https://www.deliciousmagazine.co.uk/
+"Cooking Recipes",https://therealfoodrds.com/
+"Cooking Recipes",http://allrecipes.co.uk/
+"Video Streaming",https://www.youtube.com/
+"Video Streaming",https://www.netflix.com/
+"Video Streaming",https://www.disneyplus.com/en-gb
+"Video Streaming",https://www.hulu.com/
+"Video Streaming",https://www.primevideo.com/
+"Video Streaming",https://www.dailymotion.com/gb
+"Shopping and Bookings",https://www.ebay.co.uk/
+"Shopping and Bookings",https://www.argos.co.uk/
+"Shopping and Bookings",https://www.etsy.com/
+"Shopping and Bookings",https://www.amazon.co.uk/
+"Shopping and Bookings",https://www.wilko.com/
+"Shopping and Bookings",https://www.qvc.com/
+"Shopping and Bookings",https://www.booking.com/
+"Shopping and Bookings",https://www.airbnb.co.uk/
+"Shopping and Bookings",https://www.tripadvisor.com/
+"Shopping and Bookings",https://www.expedia.com/
+"Shopping and Bookings",https://uk.hotels.com/
+"Shopping and Bookings",https://www.kayak.co.uk/
+"Shopping and Bookings",https://www.hilton.com/en/
+"Shopping and Bookings",https://www.skyscanner.net/
+"Shopping and Bookings",https://www.cheapflights.co.uk/
+"Shopping and Bookings",https://www.easyjet.com/en
+"Shopping and Bookings",https://www.lastminute.com/flights/
+"Shopping and Bookings",https://www.ryanair.com/gb/en
+"Shopping and Bookings",https://www.hollandandbarrett.com/ 
 "Gambling",https://www.paddypower.com/bet
 "Gambling",https://m.skybet.com/
 "Gambling",https://www.bet365.com/#/HO/
@@ -46,23 +68,28 @@
 "Gambling",https://www.betfair.com/sport/
 "Gambling",https://www.unibet.co.uk/betting/sports/home
 "Gambling",https://www.novibet.co.uk/sports
-"Travel",https://www.booking.com/
-"Travel",https://www.airbnb.co.uk/
-"Travel",https://www.tripadvisor.com/
-"Travel",https://www.uber.com/gb/en/
-"Travel",https://www.expedia.com/
-"Travel",https://uk.hotels.com/
-"Travel",https://www.kayak.co.uk/
-"Travel",https://www.hilton.com/en/
-"Travel",https://www.skyscanner.net/
-"Travel",https://www.cheapflights.co.uk/
-"Travel",https://www.easyjet.com/en
-"Travel",https://www.lastminute.com/flights/
-"Travel",https://www.ryanair.com/gb/en
-"Jobs",https://www.reed.co.uk/
-"Jobs",https://www.cv-library.co.uk/
-"Jobs",https://www.totaljobs.com/
-"Jobs",https://www.monster.co.uk/
-"Jobs",https://www.gov.uk/find-a-job
-"Jobs",https://www.jobsite.co.uk/
-"Jobs",https://uk.indeed.com/
+"Job Search",https://www.reed.co.uk/
+"Job Search",https://www.cv-library.co.uk/
+"Job Search",https://www.totaljobs.com/
+"Job Search",https://www.monster.co.uk/
+"Job Search",https://www.gov.uk/find-a-job
+"Job Search",https://www.jobsite.co.uk/
+"Job Search",https://uk.indeed.com/
+"Health and lifestyle",https://www.nhs.uk/
+"Health and lifestyle",https://www.health.com/
+"Health and lifestyle",https://www.myfitnesspal.com/
+"Health and lifestyle",https://www.healthline.com/
+"Health and lifestyle",https://www.wellandgood.com/
+"Health and lifestyle",https://breakingmuscle.com/
+"Health and lifestyle",https://www.acefitness.org/
+"Health and lifestyle",https://www.womenshealthmag.com/
+"Health and lifestyle",https://www.yogajournal.com/
+"Health and lifestyle",https://www.verywellhealth.com/
+"Health and lifestyle",https://www.thegymgroup.com/
+"Health and lifestyle",https://www.puregym.com/
+"Health and lifestyle",https://www.welcomegym.co.uk/
+"Health and lifestyle",https://simplygym.co.uk/
+"Health and lifestyle",https://www.health.org.uk/
+"Health and lifestyle",https://www.nice.org.uk/
+"Health and lifestyle",https://www.nutrition.org.uk/
+"Health and lifestyle",https://www.euro.who.int/en/home
