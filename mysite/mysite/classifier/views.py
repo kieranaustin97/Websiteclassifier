@@ -15,14 +15,23 @@ def index(request):
         if form.is_valid():
 
             input_url = form.cleaned_data['url']
-            classification = web_classifier.predict_site_class(input_url)
             currentDatestamp = datetime.datetime.now()
-            
-            context = {
-                "url": input_url,
-                "url_classification": classification,
-                "datestamp": currentDatestamp
-            }
+            try:
+                classification = web_classifier.predict_site_class(input_url)
+            except Exception:
+                context = {
+                    "url": input_url,
+                    "url_classification": "HTML Currently Unavilable and therefore no Classification provided",
+                    "datestamp": currentDatestamp
+                }
+
+                return render(request, 'classifier/output.html', context)
+            else:
+                context = {
+                    "url": input_url,
+                    "url_classification": classification,
+                    "datestamp": currentDatestamp
+                }
 
             #Create and save output to Database
             PredictedWebsites.objects.create(

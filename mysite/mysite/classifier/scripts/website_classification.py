@@ -23,12 +23,19 @@ from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.naive_bayes import MultinomialNB
 
 def collect_html(url):
+    method_check = re.search('^http://|^https://',url)
+    if method_check:
+        url = url
+    else: url = "http://" + url
+
     try:
         webpage = requests.get(url, timeout=10) #Request webpage
         html_text = webpage.text         #HTML text from webpage
-        return html_text
     except Exception as collect_html_err:
         print(collect_html_err)             #Print error message
+        raise
+    else:
+        return html_text
 
 def clean_html_text(html_string):
     html2textObject = html2text.HTML2Text() #Create html2text object
@@ -38,37 +45,41 @@ def clean_html_text(html_string):
         handled_html_text = html2textObject.handle(html_string)
         clean_html_text = handled_html_text.replace("\n", " ")
         lower_clean_html_text = clean_html_text.lower().strip() #Lower String and strip leading/trailing whitespaces
-        return lower_clean_html_text              #Return cleaned html text from html string
     except Exception as clean_html_text_err:
         print(clean_html_text_err)          #Print error message
+        raise
+    else:
+        return lower_clean_html_text              #Return cleaned html text from html string
 
 def class_collect_website(class_name,url):
-    message_string = clean_html_text(collect_html(url))
-
-    html_message_data = {'classification':class_name,'message':message_string}
-    return(html_message_data)
-
-def create_dataframe(data):
-    newDF = pandas.DataFrame(data=data)
-    return(newDF)
+    try:
+        message_string = clean_html_text(collect_html(url))
+    except Exception:
+        raise
+    else:
+        html_message_data = {'classification':class_name,'message':message_string}
+        return(html_message_data)
 
 def predict_site_class(url): #Code run on form submit (User input)
     #Collect HTML from input url
-    new_data_message_string = clean_html_text(collect_html(url))
-
-    #String object
-    new_data_message_string=[new_data_message_string]
-    #Counts and transformation for model fitting
-    new_data_counts = count_vect.transform(new_data_message_string)
-    new_data_counts = transformer.transform(new_data_counts) 
-    #Print classification from prediction
-    val = model.predict(new_data_counts)[0]
+    try:
+        new_data_message_string = clean_html_text(collect_html(url))
+    except Exception:
+        raise
+    else:
+        #String object
+        new_data_message_string=[new_data_message_string]
+        #Counts and transformation for model fitting
+        new_data_counts = count_vect.transform(new_data_message_string)
+        new_data_counts = transformer.transform(new_data_counts) 
+        #Print classification from prediction
+        val = model.predict(new_data_counts)[0]
     
-    for key, value in classification_dictionary.items(): 
-         if val == value: 
-             classification_string = key 
+        for key, value in classification_dictionary.items(): 
+            if val == value: 
+                classification_string = key 
 
-    return classification_string
+        return classification_string
 
 def list_possible_classes():
     return unique_values
@@ -84,10 +95,12 @@ with open('classifier/scripts/training_websites.csv') as website_csv_file:
     website_csv_reader = csv.DictReader(website_csv_file)
     #Collect and clean HTML and append to data list
     for row in website_csv_reader:
-        data_for_dataframe.append(class_collect_website(row['classification'],row['url']))
-
+        try:
+            data_for_dataframe.append(class_collect_website(row['classification'],row['url']))
+        except Exception:
+            continue
 #Create dataframe
-htmlDF = create_dataframe(data_for_dataframe)
+htmlDF = pandas.DataFrame(data_for_dataframe)
 
 #Array of unique classes of websites from training data
 unique_values = htmlDF.classification.unique()
@@ -99,7 +112,7 @@ for i in range(len(unique_values)): #For each unique classification
  
 #Replace classification name with number
 htmlDF['classification'] = htmlDF.classification.map(classification_dictionary)
-htmlDF['message'] = htmlDF.message.str.replace(r'[^\w\s]', '') 
+htmlDF['message'] = htmlDF.message.str.replace(r'[^\w\s]', '', regex=True) 
 
 count_vect = CountVectorizer()
 counts = count_vect.fit_transform(htmlDF['message'])
