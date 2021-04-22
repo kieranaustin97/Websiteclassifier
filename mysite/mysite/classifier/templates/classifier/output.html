@@ -3,8 +3,8 @@
 {% block content %}
 <div class="container">
     <h4 class="center-align">Classification Results</h4>
-    <h4 class="center-align">Classified URL: {{url}}</h4>
-    <h4 class="center-align">URL Classification: {{url_classification}}</h4>
+    <h4 class="center-align" style="color:{{colour}}">Classified URL: {{url}}</h4>
+    <h4 class="center-align" style="color:{{colour}}">URL Classification: {{url_classification}}</h4>
     <a href="" class="waves-effect waves-light btn-large">Classify Another URL</a>
     <br><br>
     <a class="waves-effect waves-purple btn-large" href="{% url 'showresults' %}">Previous Classifications</a>
