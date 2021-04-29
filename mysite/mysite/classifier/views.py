@@ -1,13 +1,13 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
+"""Django Views File"""
+import re
+import datetime
+import requests
 
-from .forms import URLForm
 from classifier.models import PredictedWebsites
 import classifier.scripts.website_classification as web_classifier
 
-import datetime
-import requests
-import re
+from django.shortcuts import render
+from .forms import URLForm
 
 # Create your views here.
 def index(request):
@@ -16,21 +16,20 @@ def index(request):
 
         if form.is_valid():
 
-            currentDatestamp = datetime.datetime.now()
+            current_datestamp = datetime.datetime.now()
             input_url = form.cleaned_data['url']
             method_check = re.search('^http://|^https://',input_url)
             if method_check:
                 url = input_url
-            else: 
+            else:
                 url = "http://" + input_url
-            
             try:
                 url, classification = web_classifier.predict_site_class(url)
             except requests.exceptions.Timeout:
                 context = {
                     "url": url,
                     "url_classification": "HTML Currently Unavilable and therefore no Classification provided",
-                    "datestamp": currentDatestamp,
+                    "datestamp": current_datestamp,
                     "colour":"Red"
                 }
                 return render(request, 'classifier/output.html', context)
@@ -38,7 +37,7 @@ def index(request):
                 context = {
                     "url": input_url,
                     "url_classification": "HTML Currently Unavilable and therefore no Classification provided",
-                    "datestamp": currentDatestamp,
+                    "datestamp": current_datestamp,
                     "colour":"Red"
                 }
                 return render(request, 'classifier/output.html', context)
@@ -46,12 +45,13 @@ def index(request):
                 context = {
                     "url": url,
                     "url_classification": classification,
-                    "datestamp": currentDatestamp,
+                    "datestamp": current_datestamp,
                     "colour":"black"
                 }
-                PredictedWebsites.objects.create(url=url,classification=classification,datestamp=currentDatestamp) #Create and save output to Database
+                #Create and save output to Database
+                PredictedWebsites.objects.create(url=url,classification=classification,datestamp=current_datestamp)
                 return render(request, 'classifier/output.html', context)
-    
+
     else:
         form = URLForm()
         context = {
@@ -71,8 +71,6 @@ def showresults(request):
     #Check if any objects retrieved, if there is none return blank page instead of table
     if len(previous_classification_list) == 0:
         return render(request, 'classifier/noResults.html')
-    else:
-        context = {
-            "results": previous_classification_list
-        }
-        return render(request, 'classifier/results.html', context)
+    
+    context = {"results": previous_classification_list}
+    return render(request, 'classifier/results.html', context)

@@ -1,9 +1,9 @@
+"""Website Classification Machine Learning and Data Science Script"""
 #Webpage collection imports
-
+import csv
+import re #tokenize_string
 import requests #collect_html
 import html2text #trim_html
-import re #tokenize_string
-import csv
 
 #Machine learning imports
 import pandas
@@ -27,15 +27,15 @@ def collect_html(url):
         return html_text
 
 def clean_html_text(html_string):
-    html2textObject = html2text.HTML2Text() #Create html2text object
-    html2textObject.ignore_links = False #Change setting to not convert links from HTML
-    html2textObject.ignore_images = True
+    html_2_text_object = html2text.HTML2Text() #Create html2text object
+    html_2_text_object.ignore_links = False #Change setting to not convert links from HTML
+    html_2_text_object.ignore_images = True
     try:
-        handled_html_text = html2textObject.handle(html_string)
-        clean_html_text = re.sub(r'[^\w\s]', ' ',handled_html_text) #regex to take out special characters
-        stripped_html_text = re.sub(r'\s+',' ', clean_html_text).lower().strip() #regex to take out multiple white spaces, Lower String and strip leading/trailing whitespaces
-    except Exception as clean_html_text_err:
-        print(clean_html_text_err) #Print error message
+        handled_html_text = html_2_text_object.handle(html_string)
+        cleaned_html_text = re.sub(r'[^\w\s]', ' ',handled_html_text) #regex to take out special characters
+        stripped_html_text = re.sub(r'\s+',' ', cleaned_html_text).lower().strip() #regex to take out multiple white spaces, Lower String and strip leading/trailing whitespaces
+    except Exception as cleaned_html_text_error:
+        print(cleaned_html_text_error) #Print error message
         raise
     else:
         return stripped_html_text #Return cleaned html text from html string
@@ -72,7 +72,6 @@ def predict_site_class(url): #Code run on form submit (User input)
 
 def list_possible_classes():
     return unique_values
-    
     
 #Script starts running here when server started due to function call in views.py file.
 
