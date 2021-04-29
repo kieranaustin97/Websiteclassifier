@@ -1,4 +1,4 @@
-#Webpage collection imports (Where each import is used)
+#Webpage collection imports
 
 import requests #collect_html
 import html2text #trim_html
@@ -6,20 +6,11 @@ import re #tokenize_string
 import csv
 
 #Machine learning imports
-import numpy
 import pandas
 from sklearn.model_selection import train_test_split
-from sklearn.naive_bayes import GaussianNB
 from sklearn.metrics import accuracy_score
-from collections import OrderedDict
-
-import matplotlib.pyplot as plt
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
-
-#import nltk
-#from nltk.stem import PorterStemmer
-
 from sklearn.naive_bayes import MultinomialNB
 
 def collect_html(url):
