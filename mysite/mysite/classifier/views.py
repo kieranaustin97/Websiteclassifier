@@ -11,6 +11,7 @@ from .forms import URLForm
 
 # Create your views here.
 def index(request):
+    """Main index view for webpage"""
     if request.method == 'POST':
         form = URLForm(request.POST)
 
@@ -61,6 +62,7 @@ def index(request):
         return render(request, 'classifier/home.html', context)
 
 def showresults(request):
+    """Showresults view for displaying all previous classifications on frontend"""
     #Deletes item from table if delete form submitted
     if request.method == "POST":
         PredictedWebsites.objects.get(id=request.POST['id']).delete()

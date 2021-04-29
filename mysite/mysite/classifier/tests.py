@@ -12,9 +12,9 @@ from classifier.scripts import website_classification
 ## Tests for website_classification (Must)
 ### Only test methods written not imported such as requests library functions
 class WebsiteClassificationMethods(TestCase):
-
-    testWebsiteClassifierObject = website_classification#.WebsiteClassifier()
- 
+    """Tests for website_classification script"""
+    testWebsiteClassifierObject = website_classification
+   
     def test_clean_html_text(self):
         input_html_string = "This is the \n correctly cleaned string"
         cleaned_string = self.testWebsiteClassifierObject.clean_html_text(input_html_string)
@@ -31,7 +31,7 @@ class WebsiteClassificationMethods(TestCase):
 
         expected_classified_data = {'classification': 'site_class', 'message': 'website_html'}
         self.assertEqual(classified_message_data, expected_classified_data)
-        
+       
 ## Tests for models (Maybe, currently no Django stored models, This may be changed when storing additional user classifications)
 
 ## Tests for views (Should)
