@@ -4,19 +4,19 @@ import datetime
 import requests
 
 from classifier.models import PredictedWebsites
-import classifier.scripts.website_classification as web_classifier
-
+#import classifier.scripts.website_classification as web_classifier
+from classifier.scripts.website_classification import WebsiteClassification
 from django.shortcuts import render
 from .forms import URLForm
+
+WebsiteClassifier = WebsiteClassification()
 
 # Create your views here.
 def index(request):
     """Main index view for webpage"""
     if request.method == 'POST':
         form = URLForm(request.POST)
-
         if form.is_valid():
-
             current_datestamp = datetime.datetime.now()
             input_url = form.cleaned_data['url']
             method_check = re.search('^http://|^https://',input_url)
@@ -25,7 +25,7 @@ def index(request):
             else:
                 url = "http://" + input_url
             try:
-                url, classification = web_classifier.predict_site_class(url)
+                url, classification = WebsiteClassifier.predict_site_class(url)
             except requests.exceptions.Timeout:
                 context = {
                     "url": url,
@@ -42,21 +42,21 @@ def index(request):
                     "colour":"Red"
                 }
                 return render(request, 'classifier/output.html', context)
-            else:
-                context = {
-                    "url": url,
-                    "url_classification": classification,
-                    "datestamp": current_datestamp,
-                    "colour":"black"
-                }
-                #Create and save output to Database
-                PredictedWebsites.objects.create(url=url,classification=classification,datestamp=current_datestamp)
-                return render(request, 'classifier/output.html', context)
+          
+            context = {
+                "url": url,
+                "url_classification": classification,
+                "datestamp": current_datestamp,
+                "colour":"black"
+            }
+            #Create and save output to Database
+            PredictedWebsites.objects.create(url=url,classification=classification,datestamp=current_datestamp)
+            return render(request, 'classifier/output.html', context)
 
     else:
         form = URLForm()
         context = {
-            'class_array':web_classifier.list_possible_classes(),
+            'class_array':WebsiteClassifier.list_possible_classes(),
             'form':form
         }
         return render(request, 'classifier/home.html', context)
