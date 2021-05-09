@@ -1,10 +1,12 @@
 """Django Views Test File"""
+import datetime
+
 from django.test import TestCase, Client
 from django.urls import reverse
 from classifier.models import PredictedWebsites
 #from classifier.view import index, showresults
 
-import datetime
+
 
 class TestViews(TestCase):
     """Tests for Views"""
