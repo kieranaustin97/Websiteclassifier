@@ -6,8 +6,6 @@ import requests
 
 from classifier.scripts.website_classification import WebsiteClassification
 
-## Tests for website_classification (Must)
-### Only test methods written not imported such as requests library functions
 class WebsiteClassificationMethods(TestCase):
     """Tests for website_classification script"""
     testWebsiteClassifier = WebsiteClassification()
