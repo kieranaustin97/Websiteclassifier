@@ -1,6 +1,6 @@
 """Django Views File"""
 import re
-import datetime
+from django.utils import timezone
 import requests
 
 from classifier.models import PredictedWebsites
@@ -17,7 +17,7 @@ def index(request):
     if request.method == 'POST':
         form = URLForm(request.POST)
         if form.is_valid():
-            current_datestamp = datetime.datetime.now()
+            current_datestamp = timezone.now()
             input_url = form.cleaned_data['url']
             method_check = re.search('^http://|^https://',input_url)
             if method_check:
