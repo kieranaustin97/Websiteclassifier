@@ -56,7 +56,7 @@ class WebsiteClassification:
         print(accuracy)
 
         #Fit model using every classification and URL provided
-        self.model = MultinomialNB().fit(counts, htmlDF['classification'])    
+        #self.model = MultinomialNB().fit(counts, htmlDF['classification'])    
 
     def collect_html(self,url):
         try:
