@@ -25,14 +25,24 @@
 "Banking",https://www.co-operativebank.co.uk/
 "Banking",https://www1.firstdirect.com/
 "Banking",https://www.starlingbank.com/
-"Cooking Recipes",https://www.epicurious.com/
-"Cooking Recipes",https://www.allrecipes.com/
-"Cooking Recipes",https://www.delish.com/
-"Cooking Recipes",https://www.yummly.co.uk/
-"Cooking Recipes",https://www.simplyrecipes.com/
-"Cooking Recipes",https://www.deliciousmagazine.co.uk/
-"Cooking Recipes",https://therealfoodrds.com/
-"Cooking Recipes",http://allrecipes.co.uk/
+"Cooking and Recipes",https://www.epicurious.com/
+"Cooking and Recipes",https://www.allrecipes.com/
+"Cooking and Recipes",https://www.delish.com/
+"Cooking and Recipes",https://www.yummly.co.uk/
+"Cooking and Recipes",https://www.simplyrecipes.com/
+"Cooking and Recipes",https://www.deliciousmagazine.co.uk/
+"Cooking and Recipes",https://therealfoodrds.com/
+"Cooking and Recipes",http://allrecipes.co.uk/
+"Cooking and Recipes",https://www.bbcgoodfood.com/
+"Cooking and Recipes",https://www.jamieoliver.com/
+"Cooking and Recipes",https://tasty.co/
+"Cooking and Recipes",https://www.gousto.co.uk/
+"Cooking and Recipes",https://www.hellofresh.co.uk/
+"Cooking and Recipes",https://pinchofyum.com/
+"Cooking and Recipes",https://www.deliaonline.com/
+"Cooking and Recipes",https://www.food.com/
+"Cooking and Recipes",https://www.recipe-free.com/
+"Cooking and Recipes",https://www.lovefood.com/
 "Video Streaming",https://www.youtube.com/
 "Video Streaming",https://www.netflix.com/
 "Video Streaming",https://www.disneyplus.com/en-gb
@@ -57,7 +67,10 @@
 "Shopping and Bookings",https://www.easyjet.com/en
 "Shopping and Bookings",https://www.lastminute.com/flights/
 "Shopping and Bookings",https://www.ryanair.com/gb/en
-"Shopping and Bookings",https://www.hollandandbarrett.com/ 
+"Shopping and Bookings",https://www.hollandandbarrett.com/
+"Shopping and Bookings",https://www.overclockers.co.uk/
+"Shopping and Bookings",https://www.currys.co.uk/
+"Shopping and Bookings",https://www.samsung.com/
 "Gambling",https://www.paddypower.com/bet
 "Gambling",https://m.skybet.com/
 "Gambling",https://www.bet365.com/#/HO/
@@ -75,21 +88,71 @@
 "Job Search",https://www.gov.uk/find-a-job
 "Job Search",https://www.jobsite.co.uk/
 "Job Search",https://uk.indeed.com/
-"Health and lifestyle",https://www.nhs.uk/
-"Health and lifestyle",https://www.health.com/
-"Health and lifestyle",https://www.myfitnesspal.com/
-"Health and lifestyle",https://www.healthline.com/
-"Health and lifestyle",https://www.wellandgood.com/
-"Health and lifestyle",https://breakingmuscle.com/
-"Health and lifestyle",https://www.acefitness.org/
-"Health and lifestyle",https://www.womenshealthmag.com/
-"Health and lifestyle",https://www.yogajournal.com/
-"Health and lifestyle",https://www.verywellhealth.com/
-"Health and lifestyle",https://www.thegymgroup.com/
-"Health and lifestyle",https://www.puregym.com/
-"Health and lifestyle",https://www.welcomegym.co.uk/
-"Health and lifestyle",https://simplygym.co.uk/
-"Health and lifestyle",https://www.health.org.uk/
-"Health and lifestyle",https://www.nice.org.uk/
-"Health and lifestyle",https://www.nutrition.org.uk/
-"Health and lifestyle",https://www.euro.who.int/en/home
+"Health and Lifestyle",https://www.nhs.uk/
+"Health and Lifestyle",https://www.health.com/
+"Health and Lifestyle",https://www.myfitnesspal.com/
+"Health and Lifestyle",https://www.healthline.com/
+"Health and Lifestyle",https://www.wellandgood.com/
+"Health and Lifestyle",https://breakingmuscle.com/
+"Health and Lifestyle",https://www.acefitness.org/
+"Health and Lifestyle",https://www.womenshealthmag.com/
+"Health and Lifestyle",https://www.yogajournal.com/
+"Health and Lifestyle",https://www.verywellhealth.com/
+"Health and Lifestyle",https://www.thegymgroup.com/
+"Health and Lifestyle",https://www.puregym.com/
+"Health and Lifestyle",https://www.welcomegym.co.uk/
+"Health and Lifestyle",https://simplygym.co.uk/
+"Health and Lifestyle",https://www.health.org.uk/
+"Health and Lifestyle",https://www.nice.org.uk/
+"Health and Lifestyle",https://www.nutrition.org.uk/
+"Health and Lifestyle",https://www.euro.who.int/en/home
+"Property Sales and Rentals",https://www.rightmove.co.uk/
+"Property Sales and Rentals",https://www.zoopla.co.uk/
+"Property Sales and Rentals",https://www.onthemarket.com/
+"Property Sales and Rentals",https://www.purplebricks.co.uk/
+"Property Sales and Rentals",https://www.primelocation.com/
+"Property Sales and Rentals",https://www.openrent.co.uk/
+"Property Sales and Rentals",https://www.your-move.co.uk/
+"Property Sales and Rentals",https://www.thepropertycentres.co.uk/
+"Property Sales and Rentals",https://www.andrewsonline.co.uk/
+"Property Sales and Rentals",https://www.leaders.co.uk/
+"Property Sales and Rentals",https://www.placebuzz.com/
+"Property Sales and Rentals",https://elliotoliver.co.uk/
+"Computer Hardware",https://www.intel.co.uk/
+"Computer Hardware",https://www.nvidia.com/
+"Computer Hardware",https://www.amd.com/
+"Computer Hardware",https://www.tomshardware.com/
+"Computer Hardware",https://pcpartpicker.com/
+"Computer Hardware",https://www.anandtech.com/
+"Computer Hardware",https://www.westerndigital.com/
+"Computer Hardware",https://www.novatech.co.uk/
+"Computer Hardware",https://www.scan.co.uk/
+"Programming",https://github.com/
+"Programming",https://www.w3schools.com/
+"Programming",https://www.codecademy.com/
+"Programming",https://code.org/learn
+"Programming",https://instituteofcoding.org/
+"Programming",https://www.programiz.com/
+"Programming",https://www.tutorialspoint.com/index.htm
+"Programming",https://www.python.org/
+"Programming",https://www.java.com/en/
+"Programming",https://www.ruby-lang.org/en/
+"Programming",https://www.php.net/
+"Programming",https://www.scala-lang.org/
+"Work based tools",https://trello.com/
+"Work based tools",https://www.office.com/
+"Work based tools",https://www.atlassian.com/
+"Work based tools",https://workspace.google.com/
+"Work based tools",https://www.libreoffice.org/
+"Work based tools",https://www.polarisoffice.com/en/
+"Work based tools",https://www.freeoffice.com/en/
+"Online Communications",https://zoom.us/
+"Online Communications",https://apps.google.com/meet/
+"Online Communications",https://www.flock.com/
+"Online Communications",https://fleep.io/
+"Online Communications",https://slack.com/intl/en-gb/
+"Online Communications",https://www.microsoft.com/en-gb/microsoft-teams/group-chat-software
+"Online Communications",https://www.skype.com/en/
+"Online Communications",https://discord.com/
+"Online Communications",https://www.messenger.com/
+"Online Communications",https://www.whatsapp.com/
