@@ -8,7 +8,7 @@ import html2text #trim_html
 #Machine learning imports
 import pandas
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score,precision_score
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.naive_bayes import MultinomialNB
@@ -51,9 +51,17 @@ class WebsiteClassification:
         X_train, X_test, y_train, y_test = train_test_split(counts, htmlDF['classification'], test_size=0.15, random_state=69)
         model = MultinomialNB().fit(X_train, y_train)
         y_pred = model.predict(X_test)
-        accuracy = accuracy_score(y_test,y_pred)*100
+        accuracy = accuracy_score(y_test,y_pred)
         print("Model Accuracy:")
         print(accuracy)
+
+        microPrecision = precision_score(y_test,y_pred,average='micro')
+        print("Model Micro Precision:")
+        print(microPrecision)
+
+        macroPrecision = precision_score(y_test,y_pred,average='macro')
+        print("Model Macro Precision:")
+        print(macroPrecision)
 
         #Fit model using every classification and URL provided
         #self.model = MultinomialNB().fit(counts, htmlDF['classification'])    
