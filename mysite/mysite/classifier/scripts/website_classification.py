@@ -48,9 +48,12 @@ class WebsiteClassification:
         self.transformer = TfidfTransformer().fit(counts)
         counts = self.transformer.transform(counts)
 
-        #X_train, X_test, y_train, y_test = train_test_split(counts, htmlDF['classification'], test_size=0.3, random_state=69)
-        #model = MultinomialNB().fit(X_train, y_train)
-        #predicted = model.predict(X_test)
+        X_train, X_test, y_train, y_test = train_test_split(counts, htmlDF['classification'], test_size=0.15, random_state=69)
+        model = MultinomialNB().fit(X_train, y_train)
+        y_pred = model.predict(X_test)
+        accuracy = accuracy_score(y_test,y_pred)*100
+        print("Model Accuracy:")
+        print(accuracy)
 
         #Fit model using every classification and URL provided
         self.model = MultinomialNB().fit(counts, htmlDF['classification'])    
