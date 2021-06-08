@@ -48,18 +48,18 @@ class WebsiteClassification:
         self.transformer = TfidfTransformer().fit(counts)
         counts = self.transformer.transform(counts)
 
-        X_train, X_test, y_train, y_test = train_test_split(counts, htmlDF['classification'], test_size=0.15, random_state=69)
-        model = MultinomialNB().fit(X_train, y_train)
-        y_pred = model.predict(X_test)
+        X_train, X_test, y_train, y_test = train_test_split(counts, htmlDF['classification'], test_size=0.10)
+        self.model = MultinomialNB().fit(X_train, y_train)
+        y_pred = self.model.predict(X_test)
         accuracy = accuracy_score(y_test,y_pred)
         print("Model Accuracy:")
         print(accuracy)
 
-        microPrecision = precision_score(y_test,y_pred,average='micro')
+        microPrecision = precision_score(y_test,y_pred,average='micro',zero_division=0)
         print("Model Micro Precision:")
         print(microPrecision)
 
-        macroPrecision = precision_score(y_test,y_pred,average='macro')
+        macroPrecision = precision_score(y_test,y_pred,average='macro',zero_division=0)
         print("Model Macro Precision:")
         print(macroPrecision)
 
