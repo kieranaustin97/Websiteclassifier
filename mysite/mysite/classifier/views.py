@@ -1,4 +1,7 @@
 """Django Views File"""
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+import classifier
 import re
 from django.utils import timezone
 import requests
@@ -6,12 +9,34 @@ import requests
 from classifier.models import PredictedWebsites
 #import classifier.scripts.website_classification as web_classifier
 from classifier.scripts.website_classification import WebsiteClassification
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .forms import URLForm
 
 WebsiteClassifier = WebsiteClassification()
 
 # Create your views here.
+def loginPage(request):
+    context = {}
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password =request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('index')
+        else:
+            context = {
+                "error": "Username or Password Incorrect"
+            }
+
+    return render(request, 'classifier/login.html', context)
+
+def logOut(request):
+    logout(request)
+    return redirect('login')
+
+@login_required(login_url='login')
 def index(request):
     """Main index view for webpage"""
     if request.method == 'POST':
@@ -61,6 +86,7 @@ def index(request):
         }
         return render(request, 'classifier/home.html', context)
 
+@login_required(login_url='login')
 def showresults(request):
     """Showresults view for displaying all previous classifications on frontend"""
     #Deletes item from table if delete form submitted
