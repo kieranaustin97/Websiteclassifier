@@ -57,6 +57,17 @@
     list-style-type: square !important; 
     font-size: 25px;
   }
+  nav ul {
+    color: #f0f0f0;
+  } 
+  nav li {
+    font-size: 25px;
+    list-style-type: None !important;
+  }
+  nav.r {
+    position: absolute;
+    right: 0 !important;
+  }
 
   </style> 
 
@@ -67,11 +78,17 @@
         <div class="navbar-fixed">
         <nav>
             <div class="nav-wrapper deep-purple darken-3">
-              <a href="{% url 'index' %}" class="brand-logo center">Website Classifier</a>
               <ul id="nav-mobile" class="left">
                 <li><a class="waves-effect waves-purple btn-large" href="{% url 'index' %}">Home</a></li>
                 <li><a class="waves-effect waves-purple btn-large" href="{% url 'showresults' %}">Previous Classifications</a></li>
+                {% if request.user.is_authenticated %}
+                <li><a class="waves-effect waves-purple btn-large" href="{% url 'logout' %}">Logout</a></li>
+                <li>Current User: {{ request.user }}</li>
+                {% endif %}
+                
               </ul>
+              <a href="{% url 'index' %}" class="brand-logo center">Website Classifier</a>
+              
             </div>
           </nav>
         </div>

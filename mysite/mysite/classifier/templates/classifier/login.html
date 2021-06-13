@@ -1,0 +1,20 @@
+{% extends "classifier/header.html" %}
+
+
+{% block content %}
+<div class="container">
+<h3>Please Login to access tool</h3>
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Username">
+    <input type="password" name="password" placeholder="Password">
+    <input type="submit" value="Submit">
+</form>
+
+<div>
+    <p>{{ error }}</p>
+</div>
+
+</div>
+
+{% endblock %}
