@@ -45,5 +45,5 @@ class WebsiteClassificationMethods(TestCase):
 
     def test_list_possible_classes(self):
         unique_class_values = self.testWebsiteClassifier.list_possible_classes().tolist()
-        expected_classes = ['News', 'Banking', 'Cooking Recipes', 'Video Streaming', 'Shopping and Bookings', 'Gambling', 'Job Search', 'Health and lifestyle']
+        expected_classes = ['News', 'Banking', 'Cooking and Recipes', 'Video Streaming', 'Shopping and Bookings', 'Gambling', 'Health and Lifestyle', 'Property Sales and Rentals', 'Computer Hardware', 'Programming', 'Online Communications']
         self.assertEqual(unique_class_values, expected_classes)
